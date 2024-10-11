@@ -1,18 +1,12 @@
 # MyApp
 
-To start your Phoenix server:
+The MyApp code is fodder for discussions around coding practices and alternatives.
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+In its current form it explores how to actually go about implementing LostKobrakai's suggestions at https://elixirforum.com/t/is-there-a-way-to-define-a-filter-where-clause-on-a-schema/66660/2
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Instead of using a table each for posts and comments it uses two general purpose tables called bases and links plus an Ecto.Enum discriminator to indicate which rows contain what kind of data.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Nobody in their right mind would actually implement posts and comments this wasteful and convoluted way, but that is not the point. It simply reuses the all familiar chat app nomenclature of users, posts, comments and tags often used in the Phoenix examples to show actual code so we can explore ways of handling things more elegantly.
 
-## Learn more
+The original problem is that when using the module name as a Ecto.Queryable the filter to restrict rows to the desired discriminator value has to be added manually each time.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
