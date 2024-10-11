@@ -1,0 +1,27 @@
+<.header>
+  Basis <%= @basis.id %>
+  <:subtitle>This is a basis record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/bases/#{@basis}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit basis</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Type"><%= @basis.type %></:item>
+  <:item title="Text"><%= @basis.text %></:item>
+</.list>
+
+<.back navigate={~p"/bases"}>Back to bases</.back>
+
+<.modal :if={@live_action == :edit} id="basis-modal" show on_cancel={JS.patch(~p"/bases/#{@basis}")}>
+  <.live_component
+    module={MyAppWeb.BasisLive.FormComponent}
+    id={@basis.id}
+    title={@page_title}
+    action={@live_action}
+    basis={@basis}
+    patch={~p"/bases/#{@basis}"}
+  />
+</.modal>
