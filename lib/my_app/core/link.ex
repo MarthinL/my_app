@@ -5,6 +5,8 @@ defmodule MyApp.Core.Link do
   use MyApp.Part
   alias MyApp.Core.Base
 
+  @callback query() :: Ecto.Queryable.t
+
   schema "links" do
     field :part, Ecto.Enum, values: Part.link(:__enumerators__)
 
@@ -13,6 +15,8 @@ defmodule MyApp.Core.Link do
 
     timestamps()
   end
+
+  def part_filtered(callback_module), do: callback_module.query()
 
   @doc false
   def changeset(link, attrs) do
