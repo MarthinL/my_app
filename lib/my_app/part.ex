@@ -5,11 +5,14 @@ defmodule MyApp.Part do
 
   import SimpleEnum, only: [defenum: 2]
 
-  defenum :no, [
+  defenum :base, [
     {:user,              1},
     {:chat,              2},
     {:post,              3},
-    {:comment,           4},
+    {:comment,           4}
+  ]
+
+  defenum :link, [
     {:chat_user,         21},
     {:chat_post,         23},
     {:post_comment,      34}

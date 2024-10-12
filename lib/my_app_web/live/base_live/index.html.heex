@@ -1,0 +1,42 @@
+<.header>
+  Listing Bases
+  <:actions>
+    <.link patch={~p"/bases/new"}>
+      <.button>New Base</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="bases"
+  rows={@streams.bases}
+  row_click={fn {_id, base} -> JS.navigate(~p"/bases/#{base}") end}
+>
+  <:col :let={{_id, base}} label="Type"><%= base.type %></:col>
+  <:col :let={{_id, base}} label="Text"><%= base.text %></:col>
+  <:action :let={{_id, base}}>
+    <div class="sr-only">
+      <.link navigate={~p"/bases/#{base}"}>Show</.link>
+    </div>
+    <.link patch={~p"/bases/#{base}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, base}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: base.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="base-modal" show on_cancel={JS.patch(~p"/bases")}>
+  <.live_component
+    module={MyAppWeb.BaseLive.FormComponent}
+    id={@base.id || :new}
+    title={@page_title}
+    action={@live_action}
+    base={@base}
+    patch={~p"/bases"}
+  />
+</.modal>

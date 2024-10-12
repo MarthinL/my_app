@@ -1,4 +1,4 @@
-defmodule MyAppWeb.BasisLive.FormComponent do
+defmodule MyAppWeb.BaseLive.FormComponent do
   use MyAppWeb, :live_component
 
   alias MyApp.Core
@@ -9,12 +9,12 @@ defmodule MyAppWeb.BasisLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage basis records in your database.</:subtitle>
+        <:subtitle>Use this form to manage base records in your database.</:subtitle>
       </.header>
 
       <.simple_form
         for={@form}
-        id="basis-form"
+        id="base-form"
         phx-target={@myself}
         phx-change="validate"
         phx-submit="save"
@@ -22,7 +22,7 @@ defmodule MyAppWeb.BasisLive.FormComponent do
         <.input field={@form[:type]} type="number" label="Type" />
         <.input field={@form[:text]} type="text" label="Text" />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Basis</.button>
+          <.button phx-disable-with="Saving...">Save Base</.button>
         </:actions>
       </.simple_form>
     </div>
@@ -30,33 +30,33 @@ defmodule MyAppWeb.BasisLive.FormComponent do
   end
 
   @impl true
-  def update(%{basis: basis} = assigns, socket) do
+  def update(%{base: base} = assigns, socket) do
     {:ok,
      socket
      |> assign(assigns)
      |> assign_new(:form, fn ->
-       to_form(Core.change_basis(basis))
+       to_form(Core.change_base(base))
      end)}
   end
 
   @impl true
-  def handle_event("validate", %{"basis" => basis_params}, socket) do
-    changeset = Core.change_basis(socket.assigns.basis, basis_params)
+  def handle_event("validate", %{"base" => base_params}, socket) do
+    changeset = Core.change_base(socket.assigns.base, base_params)
     {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
   end
 
-  def handle_event("save", %{"basis" => basis_params}, socket) do
-    save_basis(socket, socket.assigns.action, basis_params)
+  def handle_event("save", %{"base" => base_params}, socket) do
+    save_base(socket, socket.assigns.action, base_params)
   end
 
-  defp save_basis(socket, :edit, basis_params) do
-    case Core.update_basis(socket.assigns.basis, basis_params) do
-      {:ok, basis} ->
-        notify_parent({:saved, basis})
+  defp save_base(socket, :edit, base_params) do
+    case Core.update_base(socket.assigns.base, base_params) do
+      {:ok, base} ->
+        notify_parent({:saved, base})
 
         {:noreply,
          socket
-         |> put_flash(:info, "Basis updated successfully")
+         |> put_flash(:info, "Base updated successfully")
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -64,14 +64,14 @@ defmodule MyAppWeb.BasisLive.FormComponent do
     end
   end
 
-  defp save_basis(socket, :new, basis_params) do
-    case Core.create_basis(basis_params) do
-      {:ok, basis} ->
-        notify_parent({:saved, basis})
+  defp save_base(socket, :new, base_params) do
+    case Core.create_base(base_params) do
+      {:ok, base} ->
+        notify_parent({:saved, base})
 
         {:noreply,
          socket
-         |> put_flash(:info, "Basis created successfully")
+         |> put_flash(:info, "Base created successfully")
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

@@ -19,12 +19,12 @@ defmodule MyAppWeb.Router do
 
     get "/", PageController, :home
 
-    live "/bases", BasisLive.Index, :index
-    live "/bases/new", BasisLive.Index, :new
-    live "/bases/:id/edit", BasisLive.Index, :edit
+    live "/bases", BaseLive.Index, :index
+    live "/bases/new", BaseLive.Index, :new
+    live "/bases/:id/edit", BaseLive.Index, :edit
 
-    live "/bases/:id", BasisLive.Show, :show
-    live "/bases/:id/show/edit", BasisLive.Show, :edit
+    live "/bases/:id", BaseLive.Show, :show
+    live "/bases/:id/show/edit", BaseLive.Show, :edit
 
   end
 

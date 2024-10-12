@@ -1,8 +1,8 @@
-defmodule MyAppWeb.BasisLive.Index do
+defmodule MyAppWeb.BaseLive.Index do
   use MyAppWeb, :live_view
 
   alias MyApp.Core
-  alias MyApp.Core.Basis
+  alias MyApp.Core.Base
 
   @impl true
   def mount(_params, _session, socket) do
@@ -16,32 +16,32 @@ defmodule MyAppWeb.BasisLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Basis")
-    |> assign(:basis, Core.get_basis!(id))
+    |> assign(:page_title, "Edit Base")
+    |> assign(:base, Core.get_base!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Basis")
-    |> assign(:basis, %Basis{})
+    |> assign(:page_title, "New Base")
+    |> assign(:base, %Base{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Listing Bases")
-    |> assign(:basis, nil)
+    |> assign(:base, nil)
   end
 
   @impl true
-  def handle_info({MyAppWeb.BasisLive.FormComponent, {:saved, basis}}, socket) do
-    {:noreply, stream_insert(socket, :bases, basis)}
+  def handle_info({MyAppWeb.BaseLive.FormComponent, {:saved, base}}, socket) do
+    {:noreply, stream_insert(socket, :bases, base)}
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    basis = Core.get_basis!(id)
-    {:ok, _} = Core.delete_basis(basis)
+    base = Core.get_base!(id)
+    {:ok, _} = Core.delete_base(base)
 
-    {:noreply, stream_delete(socket, :bases, basis)}
+    {:noreply, stream_delete(socket, :bases, base)}
   end
 end

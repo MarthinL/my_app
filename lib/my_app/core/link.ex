@@ -3,13 +3,13 @@ defmodule MyApp.Core.Link do
   import Ecto.Changeset
 
   use MyApp.Part
-  alias MyApp.Core.Basis
+  alias MyApp.Core.Base
 
   schema "links" do
-    field :part, Ecto.Enum, values: Part.no(:__enumerators__)
+    field :part, Ecto.Enum, values: Part.link(:__enumerators__)
 
-    belongs_to :parent, Basis, foreign_key: :parent_id
-    belongs_to :child, Basis, foreign_key: :child_id
+    belongs_to :parent, Base, foreign_key: :parent_id
+    belongs_to :child, Base, foreign_key: :child_id
 
     timestamps()
   end

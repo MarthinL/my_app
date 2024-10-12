@@ -5,17 +5,17 @@ defmodule MyApp.CoreFixtures do
   """
 
   @doc """
-  Generate a basis.
+  Generate a base.
   """
-  def basis_fixture(attrs \\ %{}) do
-    {:ok, basis} =
+  def base_fixture(attrs \\ %{}) do
+    {:ok, base} =
       attrs
       |> Enum.into(%{
         text: "some text",
         type: 42
       })
-      |> MyApp.Core.create_basis()
+      |> MyApp.Core.create_base()
 
-    basis
+    base
   end
 end

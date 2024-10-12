@@ -1,4 +1,4 @@
-defmodule MyAppWeb.BasisLive.Show do
+defmodule MyAppWeb.BaseLive.Show do
   use MyAppWeb, :live_view
 
   alias MyApp.Core
@@ -13,9 +13,9 @@ defmodule MyAppWeb.BasisLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:basis, Core.get_basis!(id))}
+     |> assign(:base, Core.get_base!(id))}
   end
 
-  defp page_title(:show), do: "Show Basis"
-  defp page_title(:edit), do: "Edit Basis"
+  defp page_title(:show), do: "Show Base"
+  defp page_title(:edit), do: "Edit Base"
 end

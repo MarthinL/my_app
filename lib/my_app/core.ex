@@ -6,7 +6,7 @@ defmodule MyApp.Core do
   import Ecto.Query, warn: false
   alias MyApp.Repo
 
-  alias MyApp.Core.Basis
+  alias MyApp.Core.Base
 
   @doc """
   Returns the list of bases.
@@ -14,91 +14,91 @@ defmodule MyApp.Core do
   ## Examples
 
       iex> list_bases()
-      [%Basis{}, ...]
+      [%Base{}, ...]
 
   """
   def list_bases do
-    Repo.all(Basis)
+    Repo.all(Base)
   end
 
   @doc """
-  Gets a single basis.
+  Gets a single base.
 
-  Raises `Ecto.NoResultsError` if the Basis does not exist.
+  Raises `Ecto.NoResultsError` if the Base does not exist.
 
   ## Examples
 
-      iex> get_basis!(123)
-      %Basis{}
+      iex> get_base!(123)
+      %Base{}
 
-      iex> get_basis!(456)
+      iex> get_base!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_basis!(id), do: Repo.get!(Basis, id)
+  def get_base!(id), do: Repo.get!(Base, id)
 
   @doc """
-  Creates a basis.
+  Creates a base.
 
   ## Examples
 
-      iex> create_basis(%{field: value})
-      {:ok, %Basis{}}
+      iex> create_base(%{field: value})
+      {:ok, %Base{}}
 
-      iex> create_basis(%{field: bad_value})
+      iex> create_base(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_basis(attrs \\ %{}) do
-    %Basis{}
-    |> Basis.changeset(attrs)
+  def create_base(attrs \\ %{}) do
+    %Base{}
+    |> Base.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a basis.
+  Updates a base.
 
   ## Examples
 
-      iex> update_basis(basis, %{field: new_value})
-      {:ok, %Basis{}}
+      iex> update_base(base, %{field: new_value})
+      {:ok, %Base{}}
 
-      iex> update_basis(basis, %{field: bad_value})
+      iex> update_base(base, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_basis(%Basis{} = basis, attrs) do
-    basis
-    |> Basis.changeset(attrs)
+  def update_base(%Base{} = base, attrs) do
+    base
+    |> Base.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a basis.
+  Deletes a base.
 
   ## Examples
 
-      iex> delete_basis(basis)
-      {:ok, %Basis{}}
+      iex> delete_base(base)
+      {:ok, %Base{}}
 
-      iex> delete_basis(basis)
+      iex> delete_base(base)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_basis(%Basis{} = basis) do
-    Repo.delete(basis)
+  def delete_base(%Base{} = base) do
+    Repo.delete(base)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking basis changes.
+  Returns an `%Ecto.Changeset{}` for tracking base changes.
 
   ## Examples
 
-      iex> change_basis(basis)
-      %Ecto.Changeset{data: %Basis{}}
+      iex> change_base(base)
+      %Ecto.Changeset{data: %Base{}}
 
   """
-  def change_basis(%Basis{} = basis, attrs \\ %{}) do
-    Basis.changeset(basis, attrs)
+  def change_base(%Base{} = base, attrs \\ %{}) do
+    Base.changeset(base, attrs)
   end
 end

@@ -1,7 +1,7 @@
 import Ecto
 alias MyApp.Repo
 use MyApp.Part
-alias MyApp.Core.{Basis, Link, Comment, Post, PostComment}
+alias MyApp.Core.{Base, Link, Comment, Post, PostComment}
 #p1 = %Post{} |> Post.changeset(%{text: "abc"}) |> Repo.insert!()
 
 #c1 = %Comment{} |> Comment.changeset(%{text: "abc sucks"}) |> Repo.insert!()
