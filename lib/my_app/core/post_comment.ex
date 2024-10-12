@@ -1,9 +1,12 @@
 defmodule MyApp.Core.PostComment do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
   use MyApp.Part
-  alias MyApp.Core.{Post, Comment}
+  alias MyApp.Core.{Post, Comment, PostComment}
+
+  @behaviour MyApp.Core.Link
 
   schema "links" do
     field :part, Ecto.Enum, values: Part.link(:__enumerators__)
@@ -12,6 +15,10 @@ defmodule MyApp.Core.PostComment do
     belongs_to :comment, Comment, source: :child_id, where: [part: :comment]
 
     timestamps()
+  end
+
+  def query() do
+    from pc in PostComment, where: pc.part == :post_comment
   end
 
   @doc false
