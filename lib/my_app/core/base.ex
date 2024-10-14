@@ -13,7 +13,7 @@ defmodule MyApp.Core.Base do
     timestamps()
   end
 
-  def part_filtered(callback_module), do: callback_module.query()
+  def query(callback_module), do: callback_module.query()
 
   @doc false
   def changeset(base, attrs) do
